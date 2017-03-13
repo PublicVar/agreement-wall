@@ -4,8 +4,35 @@ let expect = chai.expect;
 let People = require('../../services/people');
 let AssertionError = require('assert').AssertionError;
 
+
+
 describe('People', () => {
     describe('#create', () => {
+
+        it('should return a People', () => {
+            let peopleFixtures = {
+                firstname: 'aa',
+                lastname: 'bb',
+                email: 'fdsqfd@mail.com',
+                job: 'cc',
+                organization: 'dd',
+            };
+            let people = new People();
+    
+            let newPeople = people.importData(peopleFixtures);
+
+            let expectedPeople = {
+                firstname : "aa",
+                lastname : "bb",
+                email : "fdsqfd@mail.com",
+                job : "cc",
+                organization : "dd"
+            };
+
+            newPeople.should.be.deep.equal(expectedPeople)
+
+        })
+
         it('should raise exception when firstname empty', () => {
             let peopleFixtures = {
                 firstname: '',
@@ -16,7 +43,8 @@ describe('People', () => {
             };
 
             expect(function(){
-                People.create(peopleFixtures)
+                let people = new People();
+                people.importData(peopleFixtures);
             }).to.throw(AssertionError,"AssertionError: '' == true");
         });
 
@@ -30,7 +58,8 @@ describe('People', () => {
             };
 
             expect(function(){
-                People.create(peopleFixtures)
+                let people = new People();
+                people.importData(peopleFixtures);
             }).to.throw(AssertionError,"AssertionError: '' == true");
         });
 
@@ -44,7 +73,8 @@ describe('People', () => {
             };
 
             expect(function(){
-                People.create(peopleFixtures)
+                let people = new People();
+                people.importData(peopleFixtures);
             }).to.throw(AssertionError,"AssertionError: '' == true");
         });
 
@@ -58,7 +88,8 @@ describe('People', () => {
             };
 
             expect(function(){
-                People.create(peopleFixtures)
+                let people = new People();
+                people.importData(peopleFixtures);
             }).to.throw(AssertionError,"AssertionError: '' == true");
         });
 
@@ -72,7 +103,8 @@ describe('People', () => {
             };
 
             expect(function(){
-                People.create(peopleFixtures)
+               let people = new People();
+                people.importData(peopleFixtures);
             }).to.throw(AssertionError,"AssertionError: '' == true");
         });
 
@@ -86,7 +118,8 @@ describe('People', () => {
             };
 
             expect(function(){
-                People.create(peopleFixtures)
+                let people = new People();
+                people.importData(peopleFixtures);
             }).to.throw(AssertionError,'Email not valid');
         });
     })

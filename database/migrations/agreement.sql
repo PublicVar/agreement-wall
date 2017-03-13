@@ -29,3 +29,7 @@ CREATE TABLE `people` (
 --
 ALTER TABLE `people`
   ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `people` 
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT
+
