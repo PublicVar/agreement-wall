@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1 CSFR Numérique
+    if error
+        p Vous n'avez pas rempli le formulaire. Pour le faire, cliquez sur ce lien : 
+            a(href="/") Formulaire
+    else 
+        p Votre intéressement a été pris en compte. Merci de votre participation.
+
+    a(href="/") Revenir en arrière

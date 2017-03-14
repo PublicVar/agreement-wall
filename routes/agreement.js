@@ -1,29 +1,50 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../database/db');
+
+
 const People = require('../services/people');
+const PeopleDB = require('../database/peopleDb');
 const AssertionError = require('chai').AssertionError;
+const Mailer = require('../services/mailer/mailer');
 
 
-router.post('/sign-in', function(req, res, next) {
+router.post('/sign-in', function (req, res, next) {
 
   let people = new People();
   try {
     people.importData(req.body);
   } catch (AssertionError) {
-    return res.status(400).send(AssertionError);  
+    return res.status(400).send(AssertionError);
   }
 
-  //insert in database
-  let sql =  'INSERT INTO `people` SET ?';
+  PeopleDB.save(people, (error, results, fields) => {
+    if (error) {
+      res.status(400).render('agreement', {
+        error
+      });
+    } else {
+      Mailer.sendConfirmOptIn(people.email,req.headers.host, people.hash);
+      res.render('agreement');
+    }
 
-  db.query(sql, people, (error, results, fields) => {
-    if (error){
-      return res.status(500).send('Echec inscription');
-    } 
-    return res.status(200).send('agree');
-  })
-
+  });
 });
 
+router.get('/opt-in/:hash', function (req, res, next) {
+  const hash = req.params.hash;
+  const ip = req.ip;
+  PeopleDB.getIdByHash(hash, (error, results, fields) => {
+    if (results.length <= 0) {
+      error = "Hash not valid"
+    }
+    if (error) {
+      res.render('opted-in', {
+        error
+      });
+    } else {
+      PeopleDB.setOptedIn(results[0].id,ip);
+      res.render('opted-in');
+    }
+  });
+});
 module.exports = router;

@@ -15,12 +15,12 @@ describe('People', () => {
                 lastname: 'bb',
                 email: 'fdsqfd@mail.com',
                 job: 'cc',
-                organization: 'dd',
+                organization: 'dd'
             };
             let people = new People();
     
             let newPeople = people.importData(peopleFixtures);
-
+            delete newPeople.hash;//dont' compare random hash
             let expectedPeople = {
                 firstname : "aa",
                 lastname : "bb",

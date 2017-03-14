@@ -17,7 +17,11 @@ CREATE TABLE `people` (
   `lastname` varchar(45) NOT NULL,
   `email` varchar(255) NOT NULL,
   `job` varchar(45) NOT NULL,
-  `organization` varchar(45) NOT NULL
+  `organization` varchar(45) NOT NULL,
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ip` VARCHAR(60),
+  `agreedAt` DATETIME,
+  `hash` VARCHAR(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -32,4 +36,7 @@ ALTER TABLE `people`
 
 ALTER TABLE `people` 
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT
+
+ALTER TABLE `people`
+  ADD UNIQUE INDEX `people_u_email` (`email`);
 

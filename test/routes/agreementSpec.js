@@ -3,7 +3,7 @@ let chaiHttp = require('chai-http');
 let app = require('../../app');
 let should = chai.should();
 let cheerio = require('cheerio');
-
+const shortid = require('shortid');
 chai.use(chaiHttp);//make http request while testing
 const agent = chai.request.agent(app); //make http request an keep session
 
@@ -19,7 +19,7 @@ describe('Agreement Routes', () => {
                     let people = {
                         firstname: 'fdqsfdq',
                         lastname: '',
-                        email: 'fdsqfd@mail.com',
+                        email: 'ernest.debogue@yopmail.com',
                         job: 'fdq',
                         organization: 'fds',
                         _csrf: csrf
@@ -42,7 +42,7 @@ describe('Agreement Routes', () => {
                     let people = {
                         firstname: 'fdqsfdq',
                         lastname: 'dfqs',
-                        email: 'fdsqfd@mail.com',
+                        email: shortid.generate()+'@yopmail.com',
                         job: 'fdq',
                         organization: 'fds',
                         _csrf: csrf
@@ -56,7 +56,10 @@ describe('Agreement Routes', () => {
                         });
                 });
         })
-    })
+    });
+    describe('/POST agreement/opt-in', () => {
+        
+    });
 });
 /**
  * Extract _csrf from html response

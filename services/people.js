@@ -1,5 +1,5 @@
 const assert = require('assert');
-
+const shortid = require('shortid');
 class People {
 
   constructor(){
@@ -8,6 +8,7 @@ class People {
     this.email = "";
     this.job = "";
     this.organization = "";
+    this.hash = shortid.generate();
   }
 
   importData(people){

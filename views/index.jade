@@ -5,14 +5,14 @@ block content
   p CSFR #{title}
   form(method="POST", action="/agree/sign-in")
     .form-group
-      input(type="text", placeholder="Prénom*", name="firstname", class="form-control", required)
+      input(type="text", placeholder="Prénom*", name="firstname", class="form-control", value="Nicolas", required)
     .form-group
-      input(type="text", placeholder="Nom*", name="lastname", class="form-control", required)
+      input(type="text", placeholder="Nom*", name="lastname", class="form-control",value="LUDOVIC", required)
     .form-group
-      input(type="text", placeholder="Poste*", name="job", class="form-control", required)
+      input(type="text", placeholder="Poste*", name="job", class="form-control",value="Dev", required)
     .form-group
-      input(type="email", placeholder="Email*", name="email", class="form-control", required)
+      input(type="email", placeholder="Email*", name="email", class="form-control",value="nicolas.ludovic@gmail.com", required)
     .form-group
-      input(type="text", placeholder="Organisme*", name="organization", class="form-control", required)
+      input(type="text", placeholder="Organisme*", name="organization", class="form-control",value="Simplon Réunion", required)
       input(type="hidden", name="_csrf", value="#{csrf}")
     button(type="submit", class="btn btn-default") Je suis d'accord
