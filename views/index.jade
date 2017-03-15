@@ -13,6 +13,8 @@ block content
         .title #{people.firstname} #{people.lastname} 
         .subtitle #{people.organization} 
         .description #{people.job}
+    else
+      p Soyez le.a premier.ère !
 
   .bg-gray
     h2.title-block Vous aussi manifestez votre soutien
@@ -31,7 +33,7 @@ block content
             input(type="text", placeholder="Organisme*", name="organization", class="form-control", required)
             input(type="hidden", name="_csrf", value="#{csrf}")
           .text-center
-            button(type="submit", class="btn btn-primary") Je suis d'accord
+            button(type="submit", class="btn btn-primary") Je soutiens
 
         p.text-center.mbt.
           après avoir rempli ce formulaire vous recevrez un email pour finaliser votre action. Veuillez suivre les instructions qui y seront 
