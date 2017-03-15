@@ -6,18 +6,9 @@ block content
     Trois leviers composent cette démarche : Emploi , Attractivité et Transition numérique.  
     En vous inscrivant sur le site, vous manifesterez votre soutien à cette démarche.
 
-  h2 Les personnes qui ont manifesté leur soutien
-  .text-center
-    for people in agreedPeople
-      .people 
-        .title #{people.firstname} #{people.lastname} 
-        .subtitle #{people.organization} 
-        .description #{people.job}
-    else
-      p Soyez le.a premier.ère !
 
   .bg-gray
-    h2.title-block Vous aussi manifestez votre soutien
+    h2.title-block Pour manifestez votre soutien, remplissez ce formulaire
     .row
       .col-md-8.col-md-offset-2.col-xs-12
         form(method="POST", action="/agree/sign-in")
@@ -38,3 +29,15 @@ block content
         p.text-center.mbt.
           après avoir rempli ce formulaire vous recevrez un email pour finaliser votre action. Veuillez suivre les instructions qui y seront 
           indiquées 
+
+  h2 Les personnes qui ont manifesté leur soutien
+  .text-center
+    for people in agreedPeople
+      .people 
+        .title #{people.firstname} #{people.lastname} 
+        .subtitle #{people.organization} 
+        .description #{people.job}
+    else
+      p Soyez le.a premier.ère !
+
+  
