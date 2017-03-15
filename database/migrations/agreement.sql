@@ -35,7 +35,7 @@ ALTER TABLE `people`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `people` 
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `people`
   ADD UNIQUE INDEX `people_u_email` (`email`);
