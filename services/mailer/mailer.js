@@ -10,9 +10,15 @@ class Mailer {
       <html>
       <p>Bonjour,</p>
 
-      <p>Cliquer sur le lien suivant pour confirmer votre action : <a href="http://${host}/agree/opt-in/${hash}">http://${host}/opt-in/${hash}</a></p>
+      <p>Vous recevez cet email car vous avez souhaité signaler votre soutien au CSFR Numérique.</p>
 
-      <p>Cordialement,</p>
+      <p>Pour finaliser cette action, cliquez sur le lien suivant : <a href="http://${host}/agree/opt-in/${hash}">http://${host}/opt-in/${hash}</a></p>
+
+      <p>Cordialement.</p>
+
+      <br/><br/>
+      <p>(*Veuillez ne pas répondre à cet email automatique. Cette adresse email, csfr-numerique@outlook.fr, n'est utilisée qu'a des fins d'envoie d'email pour ses applications numériques. 
+      Ce n'est en aucun cas l'adresse à utiliser pour contacter le CSFR Numérique)</p>
       </html>
       `;
       const server = this.transport.server.connect({
@@ -28,7 +34,7 @@ class Mailer {
         text: htmlMessage,
         from: "csfr.numerique@outlook.fr",
         to: to,
-        subject: "CSFR Numérique",
+        subject: "Soutien au CSFR Numérique",
         attachment: [{
           data: htmlMessage,
           alternative: true
