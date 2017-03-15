@@ -8,6 +8,7 @@ class PeopleDB {
     save(people, callback) {
         let sql = 'INSERT INTO `people` SET ?';
         this.db.query(sql, people, callback);
+       
     }
 
     getIdByHash(hash, callback) {
@@ -15,6 +16,7 @@ class PeopleDB {
         const inserts = ['id', 'hash', hash];
         sql = mysql.format(sql, inserts);
         this.db.query(sql, callback);
+        
     }
 
     setOptedIn(id,ip, callback){
@@ -22,6 +24,12 @@ class PeopleDB {
         const inserts = [ip,'id',id];
         sql = mysql.format(sql, inserts);
         this.db.query(sql, callback);
+       
+    }
+
+    getAgreedPeople(callback){
+        this.db.query('SELECT * FROM `people` WHERE `agreedAt` IS NOT NULL',callback);
+        
     }
 }
 

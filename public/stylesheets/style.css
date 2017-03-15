@@ -1,8 +1,23 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url(../img/background/circles-and-roundabouts-opacity30.png);
+  
+
 }
 
 a {
   color: #00B7FF;
+}
+.people{
+  display: inline-block;
+  text-align: center;
+  margin: 20px 20px 20px 0;
+}
+.container{
+  background-color: #FCFCFC;
+}
+
+h1, h2{
+  text-align: center;
 }

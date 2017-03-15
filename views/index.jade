@@ -1,8 +1,22 @@
 extends layout
 
 block content
-  h1 CSFR
-  p CSFR #{title}
+  h1 CSFR Numérique 2016-2017
+  p.
+    La démarche du comité stratégique régionale de filière a pour but de valoriser et accompagner la filière numérique à La Réunion.  
+    Trois leviers composent cette démarche : Emploi , Attractivité et Transition numérique.  
+    En vous inscrivant sur le site, vous manifesterez votre soutien à cette démarche.
+
+  h2 Les personnes qui ont manifesté leur soutien
+  .text-center
+    for people in agreedPeople
+      .people 
+        .title #{people.firstname} #{people.lastname} 
+        .subtitle #{people.organization} 
+        .description #{people.job}
+
+  h2 Vous aussi manifestez votre soutient
+  
   form(method="POST", action="/agree/sign-in")
     .form-group
       input(type="text", placeholder="Prénom*", name="firstname", class="form-control", value="Nicolas", required)
@@ -16,3 +30,7 @@ block content
       input(type="text", placeholder="Organisme*", name="organization", class="form-control",value="Simplon Réunion", required)
       input(type="hidden", name="_csrf", value="#{csrf}")
     button(type="submit", class="btn btn-default") Je suis d'accord
+
+  p. 
+    après avoir rempli ce formulaire vous recevrez un email pour finaliser votre action. Veuillez suivre les instructions qui y seront 
+    indiquées 
