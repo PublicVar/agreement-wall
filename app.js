@@ -88,7 +88,12 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  logger.log('error',err.message, {error: err, req});
+  logger.log('error',err.message, {error: err, request:{
+    url: req.originalUrl,
+    params: req.params,
+    body: req.body,
+    query: req.query
+  }});
 
   // render the error page
   res.status(err.status || 500);
