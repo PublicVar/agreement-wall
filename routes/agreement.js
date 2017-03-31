@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-
+const logger = require('../services/logger/logger');
 const People = require('../services/people');
 const PeopleDB = require('../database/peopleDb');
 const AssertionError = require('chai').AssertionError;
@@ -19,6 +19,7 @@ router.post('/sign-in', function (req, res, next) {
 
   PeopleDB.save(people, (error, results, fields) => {
     if (error) {
+      logger.log('error',error.message, {error});
       res.status(400).render('agreement', {
         error
       });
@@ -36,8 +37,10 @@ router.get('/opt-in/:hash', function (req, res, next) {
   PeopleDB.getIdByHash(hash, (error, results, fields) => {
     if (results.length <= 0) {
       error = "Hash not valid"
+      logger.log('error',error);
     }
     if (error) {
+      logger.log('error','Opted in error', error);
       res.render('opted-in', {
         error
       });
