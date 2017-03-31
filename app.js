@@ -1,17 +1,50 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 const session = require('express-session');
 var csrf = require('csurf');
+const winston = require('winston');
 
 var index = require('./routes/index');
 var agreement = require('./routes/agreement');
 
 var app = express();
+//Add winston log to a file and disable the default console outpu
+const logger = new (winston.Logger)({
+    transports: [
+      //log : error, warn, info
+      new winston.transports.File({ 
+        level: 'info',
+        filename: './logs/all.log' ,
+        json: true,
+        maxsize: 5242880, //5MB
+        maxFiles: 5,
+        colorize: false
+      }),
+      //log debug
+      new winston.transports.Console({
+            level: 'debug',
+            handleExceptions: true,
+            json: false,
+            colorize: true,
+            filename: './logs/debug.log',
+        })
+    ],
+    exitOnError: false
+});
+logger.stream = {
+    write: function(message, encoding){
+        logger.info(message);
+    }
+};
+
+//make morgan logger for http request logs into file throught winston
+app.use(morgan("combined", { "stream": logger.stream }));
+
 
 app.use(session({
   secret: 'WIWe@m$RMMWtzOi4QkZslgafJodWa!',
@@ -25,7 +58,7 @@ app.set('view engine', 'jade');
 app.set('trust_proxy', 1);
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(morgan('dev'));//change the logger (previous reference to morgan) to morgan variable
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
@@ -52,6 +85,8 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  logger.log('error',err.message, err);
 
   // render the error page
   res.status(err.status || 500);
