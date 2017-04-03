@@ -1,3 +1,4 @@
 node_modules/
 pm2.config.js
 logs/
+.vscode/
