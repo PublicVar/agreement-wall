@@ -19,7 +19,7 @@ router.post('/sign-in', function (req, res, next) {
 
   PeopleDB.save(people, (error, results, fields) => {
     if (error) {
-      logger.log('error',error.message, {error});
+      logger.log('error','Save People Error :'+error.message, {error});
       res.status(400).render('agreement', {
         error
       });
@@ -37,10 +37,10 @@ router.get('/opt-in/:hash', function (req, res, next) {
   PeopleDB.getIdByHash(hash, (error, results, fields) => {
     if (results.length <= 0) {
       error = "Hash not valid"
-      logger.log('error',error);
+      logger.log('error',"Optin Error : "+error);
     }
     if (error) {
-      logger.log('error','Opted in error', error);
+      logger.log('error','Optin Error ', error);
       res.render('opted-in', {
         error
       });
