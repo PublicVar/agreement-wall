@@ -9,7 +9,7 @@ class PeopleDB {
         let sql = 'INSERT INTO `people` SET ?';
         this.db.query(sql, people, ()=>{
             callback();
-            db.release();
+            // db.release();
         });
        
     }
@@ -20,7 +20,7 @@ class PeopleDB {
         sql = mysql.format(sql, inserts);
         this.db.query(sql,  ()=>{
             callback();
-            db.release();
+            // db.release();
         });
         
     }
@@ -31,7 +31,7 @@ class PeopleDB {
         sql = mysql.format(sql, inserts);
         this.db.query(sql,  ()=>{
             callback();
-            db.release();
+            // db.release();
         });
        
     }
@@ -39,7 +39,7 @@ class PeopleDB {
     getAgreedPeople(callback){
         this.db.query('SELECT * FROM `people` WHERE `agreedAt` IS NOT NULL', ()=>{
             callback();
-            db.release();
+            // db.release();
         });
         
     }
