@@ -31,9 +31,9 @@ block content
           indiquées 
 
   h2 Les personnes qui ont manifesté leur soutien
-  .text-center
+  .text-center.row
     for people in agreedPeople
-      .people 
+      .people.col-md-3.col-xs-12
         .title #{people.firstname} #{people.lastname} 
         .subtitle #{people.organization} 
         .description #{people.job}
