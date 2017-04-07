@@ -41,6 +41,7 @@ body h2 {
 .people {
   /*display: inline-block;*/
   text-align: center;
+  min-height: 120px;
   /*margin: 20px 40px 40px 0;*/
   margin-top: 20px;
   margin-bottom: 20px;
